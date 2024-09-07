@@ -1,9 +1,3 @@
-local function update_hl(group, tbl)
-  local old_hl = vim.api.nvim_get_hl_by_name(group, true)
-  local new_hl = vim.tbl_extend("force", old_hl, tbl)
-  vim.api.nvim_set_hl(0, group, new_hl)
-end
-
 local g = vim.g
 local highlight = vim.api.nvim_set_hl
 
@@ -217,9 +211,6 @@ M.style = function()
 
   -- Character constants
   highlight(0, "Character", { link = "MoonflyPurple", italic = true })
-
-  update_hl("TSKeyword", { italic = true })
-  update_hl("JSKeyword", { italic = true })
 
   -- Exceptions
   highlight(0, "Exception", { link = "MoonflyCrimson" })
