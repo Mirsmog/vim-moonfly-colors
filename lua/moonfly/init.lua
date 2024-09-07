@@ -1,3 +1,9 @@
+local function update_hl(group, tbl)
+  local old_hl = vim.api.nvim_get_hl_by_name(group, true)
+  local new_hl = vim.tbl_extend("force", old_hl, tbl)
+  vim.api.nvim_set_hl(0, group, new_hl)
+end
+
 local g = vim.g
 local highlight = vim.api.nvim_set_hl
 
@@ -186,13 +192,13 @@ M.style = function()
   end
 
   -- Functions
-  highlight(0, "Function", { link = "MoonflySky" })
+  highlight(0, "Function", { link = "MoonflySky", italic = true })
 
   -- Strings
   highlight(0, "String", { link = "MoonflyKhaki" })
 
   -- Booleans
-  highlight(0, "Boolean", { link = "MoonflyCranberry" })
+  highlight(0, "Boolean", { link = "MoonflyCranberry", italic = true })
 
   -- Identifiers
   highlight(0, "Identifier", { link = "MoonflyTurquoise" })
@@ -201,7 +207,7 @@ M.style = function()
   highlight(0, "Title", { fg = orange })
 
   -- const, static
-  highlight(0, "StorageClass", { link = "MoonflyViolet" })
+  highlight(0, "StorageClass", { link = "MoonflyViolet", italic = true })
 
   -- void, intptr_t
   highlight(0, "Type", { fg = emerald })
@@ -210,7 +216,10 @@ M.style = function()
   highlight(0, "Constant", { link = "MoonflyOrange" })
 
   -- Character constants
-  highlight(0, "Character", { link = "MoonflyPurple" })
+  highlight(0, "Character", { link = "MoonflyPurple", italic = true })
+
+  update_hl("TSKeyword", { italic = true })
+  update_hl("JSKeyword", { italic = true })
 
   -- Exceptions
   highlight(0, "Exception", { link = "MoonflyCrimson" })
@@ -219,7 +228,7 @@ M.style = function()
   highlight(0, "PreProc", { link = "MoonflyCranberry" })
 
   -- case in switch statement
-  highlight(0, "Label", { link = "MoonflyTurquoise" })
+  highlight(0, "Label", { link = "MoonflyTurquoise", italic = true })
 
   -- end-of-line '$', end-of-file '~'
   highlight(0, "NonText", { fg = grey39 })
@@ -228,7 +237,7 @@ M.style = function()
   highlight(0, "Operator", { link = "MoonflyCranberry" })
 
   -- for, while
-  highlight(0, "Repeat", { link = "MoonflyViolet" })
+  highlight(0, "Repeat", { link = "MoonflyViolet", italic = true })
 
   -- Search
   highlight(0, "Search", { bg = grey1, fg = grey89 })
@@ -239,10 +248,10 @@ M.style = function()
   highlight(0, "Special", { link = "MoonflyCranberry" })
 
   -- if, else
-  highlight(0, "Statement", { fg = violet })
+  highlight(0, "Statement", { fg = violet, italic = true })
 
   -- struct, union, enum, typedef
-  highlight(0, "Structure", { link = "MoonflyBlue" })
+  highlight(0, "Structure", { link = "MoonflyBlue", italic = true })
 
   -- Status, split and tab lines
   highlight(0, "StatusLine", { bg = grey18, fg = white })
